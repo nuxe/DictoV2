@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		434D5CAF2D6E982C0064E741 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 434D5C922D6E982C0064E741 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 434D5C992D6E982C0064E741;
+			remoteInfo = Dicto2;
+		};
+		434D5CB92D6E982C0064E741 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 434D5C922D6E982C0064E741 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 434D5C992D6E982C0064E741;
+			remoteInfo = Dicto2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		434D5C9A2D6E982C0064E741 /* Dicto2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dicto2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		434D5CAE2D6E982C0064E741 /* Dicto2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Dicto2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		434D5CB82D6E982C0064E741 /* Dicto2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Dicto2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		434D5C9C2D6E982C0064E741 /* Dicto2 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Dicto2;
+			sourceTree = "<group>";
+		};
+		434D5CB12D6E982C0064E741 /* Dicto2Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Dicto2Tests;
+			sourceTree = "<group>";
+		};
+		434D5CBB2D6E982C0064E741 /* Dicto2UITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Dicto2UITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		434D5C972D6E982C0064E741 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		434D5CAB2D6E982C0064E741 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		434D5CB52D6E982C0064E741 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		434D5C912D6E982C0064E741 = {
+			isa = PBXGroup;
+			children = (
+				434D5C9C2D6E982C0064E741 /* Dicto2 */,
+				434D5CB12D6E982C0064E741 /* Dicto2Tests */,
+				434D5CBB2D6E982C0064E741 /* Dicto2UITests */,
+				434D5C9B2D6E982C0064E741 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		434D5C9B2D6E982C0064E741 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				434D5C9A2D6E982C0064E741 /* Dicto2.app */,
+				434D5CAE2D6E982C0064E741 /* Dicto2Tests.xctest */,
+				434D5CB82D6E982C0064E741 /* Dicto2UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		434D5C992D6E982C0064E741 /* Dicto2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 434D5CC22D6E982C0064E741 /* Build configuration list for PBXNativeTarget "Dicto2" */;
+			buildPhases = (
+				434D5C962D6E982C0064E741 /* Sources */,
+				434D5C972D6E982C0064E741 /* Frameworks */,
+				434D5C982D6E982C0064E741 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				434D5C9C2D6E982C0064E741 /* Dicto2 */,
+			);
+			name = Dicto2;
+			packageProductDependencies = (
+			);
+			productName = Dicto2;
+			productReference = 434D5C9A2D6E982C0064E741 /* Dicto2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		434D5CAD2D6E982C0064E741 /* Dicto2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 434D5CC52D6E982C0064E741 /* Build configuration list for PBXNativeTarget "Dicto2Tests" */;
+			buildPhases = (
+				434D5CAA2D6E982C0064E741 /* Sources */,
+				434D5CAB2D6E982C0064E741 /* Frameworks */,
+				434D5CAC2D6E982C0064E741 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				434D5CB02D6E982C0064E741 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				434D5CB12D6E982C0064E741 /* Dicto2Tests */,
+			);
+			name = Dicto2Tests;
+			packageProductDependencies = (
+			);
+			productName = Dicto2Tests;
+			productReference = 434D5CAE2D6E982C0064E741 /* Dicto2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		434D5CB72D6E982C0064E741 /* Dicto2UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 434D5CC82D6E982C0064E741 /* Build configuration list for PBXNativeTarget "Dicto2UITests" */;
+			buildPhases = (
+				434D5CB42D6E982C0064E741 /* Sources */,
+				434D5CB52D6E982C0064E741 /* Frameworks */,
+				434D5CB62D6E982C0064E741 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				434D5CBA2D6E982C0064E741 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				434D5CBB2D6E982C0064E741 /* Dicto2UITests */,
+			);
+			name = Dicto2UITests;
+			packageProductDependencies = (
+			);
+			productName = Dicto2UITests;
+			productReference = 434D5CB82D6E982C0064E741 /* Dicto2UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		434D5C922D6E982C0064E741 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					434D5C992D6E982C0064E741 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					434D5CAD2D6E982C0064E741 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 434D5C992D6E982C0064E741;
+					};
+					434D5CB72D6E982C0064E741 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 434D5C992D6E982C0064E741;
+					};
+				};
+			};
+			buildConfigurationList = 434D5C952D6E982C0064E741 /* Build configuration list for PBXProject "Dicto2" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 434D5C912D6E982C0064E741;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 434D5C9B2D6E982C0064E741 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				434D5C992D6E982C0064E741 /* Dicto2 */,
+				434D5CAD2D6E982C0064E741 /* Dicto2Tests */,
+				434D5CB72D6E982C0064E741 /* Dicto2UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		434D5C982D6E982C0064E741 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		434D5CAC2D6E982C0064E741 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		434D5CB62D6E982C0064E741 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		434D5C962D6E982C0064E741 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		434D5CAA2D6E982C0064E741 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		434D5CB42D6E982C0064E741 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		434D5CB02D6E982C0064E741 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 434D5C992D6E982C0064E741 /* Dicto2 */;
+			targetProxy = 434D5CAF2D6E982C0064E741 /* PBXContainerItemProxy */;
+		};
+		434D5CBA2D6E982C0064E741 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 434D5C992D6E982C0064E741 /* Dicto2 */;
+			targetProxy = 434D5CB92D6E982C0064E741 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		434D5CC02D6E982C0064E741 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		434D5CC12D6E982C0064E741 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		434D5CC32D6E982C0064E741 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Dicto2/Dicto2.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3T8U2C2UDF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nuxe.Dicto2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		434D5CC42D6E982C0064E741 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Dicto2/Dicto2.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3T8U2C2UDF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nuxe.Dicto2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		434D5CC62D6E982C0064E741 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3T8U2C2UDF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nuxe.Dicto2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dicto2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dicto2";
+			};
+			name = Debug;
+		};
+		434D5CC72D6E982C0064E741 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3T8U2C2UDF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nuxe.Dicto2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dicto2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dicto2";
+			};
+			name = Release;
+		};
+		434D5CC92D6E982C0064E741 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3T8U2C2UDF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nuxe.Dicto2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Dicto2;
+			};
+			name = Debug;
+		};
+		434D5CCA2D6E982C0064E741 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3T8U2C2UDF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nuxe.Dicto2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Dicto2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		434D5C952D6E982C0064E741 /* Build configuration list for PBXProject "Dicto2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				434D5CC02D6E982C0064E741 /* Debug */,
+				434D5CC12D6E982C0064E741 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		434D5CC22D6E982C0064E741 /* Build configuration list for PBXNativeTarget "Dicto2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				434D5CC32D6E982C0064E741 /* Debug */,
+				434D5CC42D6E982C0064E741 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		434D5CC52D6E982C0064E741 /* Build configuration list for PBXNativeTarget "Dicto2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				434D5CC62D6E982C0064E741 /* Debug */,
+				434D5CC72D6E982C0064E741 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		434D5CC82D6E982C0064E741 /* Build configuration list for PBXNativeTarget "Dicto2UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				434D5CC92D6E982C0064E741 /* Debug */,
+				434D5CCA2D6E982C0064E741 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 434D5C922D6E982C0064E741 /* Project object */;
+}
