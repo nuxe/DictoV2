@@ -1,126 +1,263 @@
-//
-//  AppDelegate.swift
-//  Dicto2
-//
-//  Created by Kush Agrawal on 2/25/25.
-//
-
 import Cocoa
+import AVFoundation
+import Speech
 
 @main
-class AppDelegate: NSObject, NSApplicationDelegate {
-
+class AppDelegate: NSObject, NSApplicationDelegate, SFSpeechRecognizerDelegate {
     
-
-
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+    // UI elements
+    private var statusItem: NSStatusItem!
+    private let menu = NSMenu()
+    
+    // Speech recognition properties
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
+    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var recognitionTask: SFSpeechRecognitionTask?
+    private let audioEngine = AVAudioEngine()
+    
+    // Event tap for function key
+    private var eventTap: CFMachPort?
+    
+    // Recording state
+    private var isRecording = false
+    private var lastTranscription = ""
+    
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        // Request necessary permissions
+        requestPermissions()
+        
+        // Setup menu bar icon
+        setupStatusItem()
+        
+        // Setup global event monitoring for function key
+        setupKeyboardEventTap()
     }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-
-    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
-        return true
-    }
-
-    // MARK: - Core Data stack
-
-    lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-        */
-        let container = NSPersistentContainer(name: "Dicto2")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error)")
-            }
-        })
-        return container
-    }()
-
-    // MARK: - Core Data Saving and Undo support
-
-    func save() {
-        // Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
-        let context = persistentContainer.viewContext
-
-        if !context.commitEditing() {
-            NSLog("\(NSStringFromClass(type(of: self))) unable to commit editing before saving")
-        }
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                // Customize this code block to include application-specific recovery steps.
-                let nserror = error as NSError
-                NSApplication.shared.presentError(nserror)
+    
+    private func requestPermissions() {
+        // Request speech recognition authorization
+        SFSpeechRecognizer.requestAuthorization { status in
+            switch status {
+            case .authorized:
+                print("Speech recognition authorized")
+            default:
+                print("Speech recognition not authorized")
+                DispatchQueue.main.async {
+                    self.showPermissionAlert(message: "Speech recognition permission is required")
+                }
             }
         }
-    }
-
-    func windowWillReturnUndoManager(window: NSWindow) -> UndoManager? {
-        // Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
-        return persistentContainer.viewContext.undoManager
-    }
-
-    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
-        // Save changes in the application's managed object context before the application terminates.
-        let context = persistentContainer.viewContext
         
-        if !context.commitEditing() {
-            NSLog("\(NSStringFromClass(type(of: self))) unable to commit editing to terminate")
-            return .terminateCancel
+        // Request microphone permission
+        // Note: For macOS we don't use AVAudioSession for permission
+        // The system will prompt for microphone access when we try to use it
+    }
+    
+    private func setupStatusItem() {
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        
+        if let button = statusItem.button {
+            button.image = NSImage(systemSymbolName: "mic", accessibilityDescription: "Speech to Text")
         }
         
-        if !context.hasChanges {
-            return .terminateNow
+        // Setup menu
+        menu.addItem(NSMenuItem(title: "About Speech to Text", action: #selector(showAbout), keyEquivalent: ""))
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        
+        statusItem.menu = menu
+    }
+    
+    private func setupKeyboardEventTap() {
+        // Create a mask for the events we're interested in
+        let eventMask = CGEventMask(1 << CGEventType.keyDown.rawValue)
+        
+        // Create the event tap
+        guard let eventTap = CGEvent.tapCreate(
+            tap: .cgSessionEventTap,
+            place: .headInsertEventTap,
+            options: .defaultTap,
+            eventsOfInterest: eventMask,
+            callback: { (proxy, type, event, refcon) -> Unmanaged<CGEvent>? in
+                let keyCode = event.getIntegerValueField(.keyboardEventKeycode)
+                
+                // Function key (fn) is typically keycode 63
+                if keyCode == 0 {
+                    let delegate = Unmanaged<AppDelegate>.fromOpaque(refcon!).takeUnretainedValue()
+                    
+                    if delegate.isRecording {
+                        delegate.stopRecording()
+                    } else {
+                        delegate.startRecording()
+                    }
+                    
+                    // Consume the event
+                    return nil
+                }
+                
+                
+                // Pass through all other events
+                return Unmanaged.passRetained(event)
+            },
+            userInfo: Unmanaged.passUnretained(self).toOpaque()) else {
+            print("Failed to create event tap")
+            return
         }
         
+        self.eventTap = eventTap
+        
+        // Create a run loop source and add it to the current run loop
+        let runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0)
+        CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, .commonModes)
+        
+        // Enable the event tap
+        CGEvent.tapEnable(tap: eventTap, enable: true)
+    }
+    
+    func startRecording() {
+        // Check if we're already recording
+        if isRecording {
+            return
+        }
+        
+        // Update status
+        isRecording = true
+        if let button = statusItem.button {
+            button.image = NSImage(systemSymbolName: "mic.fill", accessibilityDescription: "Recording")
+        }
+        
+        // Show notification
+        let notification = NSUserNotification()
+        notification.title = "Recording Started"
+        notification.informativeText = "Speak now, press fn key again to stop"
+        NSUserNotificationCenter.default.deliver(notification)
+        
+        // Create a new speech recognition request
+        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        
+        // For macOS, we don't use AVAudioSession as it's an iOS API
+        
+        // Configure the microphone input
+        let inputNode = audioEngine.inputNode
+        recognitionRequest?.shouldReportPartialResults = true
+        
+        // Start recognition
+        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest!) { [weak self] result, error in
+            guard let self = self else { return }
+            
+            if let result = result {
+                self.lastTranscription = result.bestTranscription.formattedString
+                print("Heard: \(self.lastTranscription)")
+            }
+            
+            if error != nil {
+                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                self.recognitionRequest = nil
+                self.recognitionTask = nil
+                self.isRecording = false
+                
+                if let button = self.statusItem.button {
+                    button.image = NSImage(systemSymbolName: "mic", accessibilityDescription: "Speech to Text")
+                }
+            }
+        }
+        
+        // Configure the microphone
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
+            self.recognitionRequest?.append(buffer)
+        }
+        
+        // Start the audio engine
+        audioEngine.prepare()
         do {
-            try context.save()
+            try audioEngine.start()
         } catch {
-            let nserror = error as NSError
-
-            // Customize this code block to include application-specific recovery steps.
-            let result = sender.presentError(nserror)
-            if (result) {
-                return .terminateCancel
-            }
-            
-            let question = NSLocalizedString("Could not save changes while quitting. Quit anyway?", comment: "Quit without saves error question message")
-            let info = NSLocalizedString("Quitting now will lose any changes you have made since the last successful save", comment: "Quit without saves error question info");
-            let quitButton = NSLocalizedString("Quit anyway", comment: "Quit anyway button title")
-            let cancelButton = NSLocalizedString("Cancel", comment: "Cancel button title")
-            let alert = NSAlert()
-            alert.messageText = question
-            alert.informativeText = info
-            alert.addButton(withTitle: quitButton)
-            alert.addButton(withTitle: cancelButton)
-            
-            let answer = alert.runModal()
-            if answer == .alertSecondButtonReturn {
-                return .terminateCancel
-            }
+            print("Could not start audio engine: \(error.localizedDescription)")
+            stopRecording()
         }
-        // If we got here, it is time to quit.
-        return .terminateNow
     }
-
+    
+    func stopRecording() {
+        // Check if we're recording
+        if !isRecording {
+            return
+        }
+        
+        // Update status
+        isRecording = false
+        if let button = statusItem.button {
+            button.image = NSImage(systemSymbolName: "mic", accessibilityDescription: "Speech to Text")
+        }
+        
+        // Stop the audio engine
+        audioEngine.stop()
+        audioEngine.inputNode.removeTap(onBus: 0)
+        
+        // End the recognition request
+        recognitionRequest?.endAudio()
+        
+        // Extract the text and copy to clipboard
+        if !lastTranscription.isEmpty {
+            // Copy to clipboard
+            let pasteboard = NSPasteboard.general
+            pasteboard.clearContents()
+            pasteboard.setString(lastTranscription, forType: .string)
+            
+            // Show notification
+            let notification = NSUserNotification()
+            notification.title = "Transcription Complete"
+            notification.informativeText = "Text copied to clipboard"
+            NSUserNotificationCenter.default.deliver(notification)
+            
+            // Paste to active application
+            pasteToActiveApplication(text: lastTranscription)
+            
+            // Reset last transcription
+            lastTranscription = ""
+        }
+        
+        // Clean up
+        recognitionRequest = nil
+        recognitionTask = nil
+    }
+    
+    private func pasteToActiveApplication(text: String) {
+        // Create a keyboard event source
+        guard let source = CGEventSource(stateID: .hidSystemState) else { return }
+        
+        // Simulate Cmd+V keyboard shortcut
+        guard let pasteCommandDown = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: true) else { return }
+        guard let pasteCommandUp = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: false) else { return }
+        
+        // Set command flag
+        pasteCommandDown.flags = .maskCommand
+        pasteCommandUp.flags = .maskCommand
+        
+        // Post events
+        pasteCommandDown.post(tap: .cghidEventTap)
+        pasteCommandUp.post(tap: .cghidEventTap)
+    }
+    
+    private func showPermissionAlert(message: String) {
+        let alert = NSAlert()
+        alert.messageText = "Permission Required"
+        alert.informativeText = message
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Open System Preferences")
+        alert.addButton(withTitle: "Cancel")
+        
+        if alert.runModal() == .alertFirstButtonReturn {
+            NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy")!)
+        }
+    }
+    
+    @objc func showAbout() {
+        let alert = NSAlert()
+        alert.messageText = "Speech to Text"
+        alert.informativeText = "Press the function (fn) key to start recording. Press it again to stop and paste the transcribed text."
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "OK")
+        alert.runModal()
+    }
 }
-
